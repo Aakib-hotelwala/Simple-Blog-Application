@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { get, post } from "../services/endpoints"; // Assuming you have a `post` function too
+import { get, post } from "../services/endpoints";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 
@@ -33,8 +33,8 @@ const Blog = () => {
         comment,
       });
 
-      setComment(""); // Clear input
-      fetchBlog(); // Refresh comments
+      setComment("");
+      fetchBlog();
     } catch (error) {
       console.error("Error submitting comment:", error);
     }

@@ -5,8 +5,8 @@ import cloudinary from "../config/cloudinary.js";
 const storage = new CloudinaryStorage({
   cloudinary,
   params: {
-    folder: "blog_images", // Ensure no spaces
-    allowed_formats: ["jpg", "jpeg", "png"], // Ensures correct format
+    folder: "blog_images",
+    allowed_formats: ["jpg", "jpeg", "png"],
   },
 });
 

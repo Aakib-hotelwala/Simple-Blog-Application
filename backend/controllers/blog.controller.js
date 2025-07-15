@@ -7,12 +7,11 @@ export const CreateBlogController = async (req, res) => {
 
     let image = null;
 
-    // Check if a file was uploaded
     if (req.files && req.files.image && req.files.image.tempFilePath) {
       console.log("Uploading to Cloudinary...");
 
       const result = await cloudinary.uploader.upload(
-        req.files.image.tempFilePath, // Path to uploaded temp file
+        req.files.image.tempFilePath,
         {
           folder: "blog_images",
           allowed_formats: ["jpg", "jpeg", "png"],
@@ -57,7 +56,6 @@ export const DeleteBlogController = async (req, res) => {
       });
     }
 
-    // Delete the image from Cloudinary if it exists
     if (blog.image) {
       const imageUrlParts = blog.image.split("/");
       const filename = imageUrlParts.pop();
@@ -66,7 +64,6 @@ export const DeleteBlogController = async (req, res) => {
       await cloudinary.uploader.destroy(`blog_images/${publicId}`);
     }
 
-    // Delete the blog from the database
     await BlogModel.findByIdAndDelete(id);
 
     return res.status(200).json({
@@ -140,7 +137,7 @@ export const UpdateBlogController = async (req, res) => {
     const { title, description } = req.body;
     const { id } = req.params;
 
-    const blog = await BlogModel.findById(id); // Fixed: Changed PostModel to BlogModel
+    const blog = await BlogModel.findById(id);
 
     if (!blog) {
       return res.status(404).json({
@@ -149,7 +146,6 @@ export const UpdateBlogController = async (req, res) => {
       });
     }
 
-    // Update fields if provided
     if (title) {
       blog.title = title;
     }
@@ -157,11 +153,9 @@ export const UpdateBlogController = async (req, res) => {
       blog.description = description;
     }
 
-    // Handle image update
     if (req.files && req.files.image && req.files.image.tempFilePath) {
       console.log("Uploading to Cloudinary...");
 
-      // Delete old image if it exists
       if (blog.image) {
         const imageUrlParts = blog.image.split("/");
         const filename = imageUrlParts.pop();

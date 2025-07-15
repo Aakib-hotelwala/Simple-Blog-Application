@@ -14,8 +14,6 @@ const Home = () => {
           justifyContent: "center",
           alignItems: "center",
           backgroundImage: "url('earth.png')",
-          // backgroundImage:
-          //   "url('https://plus.unsplash.com/premium_photo-1672855635926-c0c4c0483bf6?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHx0b3BpYy1mZWVkfDg3fEZ6bzN6dU9ITjZ3fHxlbnwwfHx8fHw%3D')",
           backgroundSize: "cover",
           backgroundPosition: "center",
           color: "white",

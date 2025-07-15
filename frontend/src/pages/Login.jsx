@@ -24,7 +24,7 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await post("/auth/login", { email, password }); // res is already response.data
+      const res = await post("/auth/login", { email, password });
 
       console.log("Login Response:", res);
 

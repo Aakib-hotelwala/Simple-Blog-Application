@@ -97,7 +97,6 @@ export const DeleteUser = async (req, res) => {
       });
     }
 
-    // Check if user is an admin
     if (user.role === "admin") {
       return res.status(403).json({
         error: true,
@@ -105,7 +104,6 @@ export const DeleteUser = async (req, res) => {
       });
     }
 
-    // Delete the image from Cloudinary if it exists
     if (user.profilePicture) {
       const profilePictureUrlParts = user.profilePicture.split("/");
       const filename = profilePictureUrlParts.pop();

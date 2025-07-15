@@ -5,7 +5,6 @@ export const CommentOnBlogController = async (req, res) => {
   try {
     const { blogId, userId, comment } = req.body;
 
-    // Assuming you have a Comment model to save the comment
     const newComment = await CommentModel({
       blogId,
       userId,

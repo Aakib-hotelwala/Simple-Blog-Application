@@ -12,7 +12,6 @@ export const isAuthenticated = async (req, res, next) => {
       });
     }
 
-    // Verify the token
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
     const user = await UserModel.findById(decoded.id);
@@ -52,7 +51,6 @@ export const isLogin = async (req, res, next) => {
       });
     }
 
-    // Verify the token
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
     const user = await UserModel.findById(decoded.id);
@@ -64,7 +62,7 @@ export const isLogin = async (req, res, next) => {
       });
     }
 
-    req.user = user; // Attach the user to the request object
+    req.user = user;
 
     next();
   } catch (error) {

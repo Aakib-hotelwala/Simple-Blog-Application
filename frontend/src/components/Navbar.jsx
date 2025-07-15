@@ -1,4 +1,3 @@
-// src/components/Navbar.jsx
 import React, { useState } from "react";
 import { Link as RouterLink, useNavigate } from "react-router-dom";
 import AppBar from "@mui/material/AppBar";
@@ -74,7 +73,6 @@ const Navbar = () => {
               Sign In
             </Button>
           ) : (
-            // Avatar dropdown logic
             <>
               <IconButton
                 onClick={handleAvatarClick}
@@ -94,7 +92,7 @@ const Navbar = () => {
                     sx: {
                       mt: 1.5,
                       minWidth: 150,
-                      bgcolor: "#1f2937", // Tailwind’s bg-gray-900
+                      bgcolor: "#1f2937",
                       color: "#fff",
                       borderRadius: 1,
                       boxShadow: 6,

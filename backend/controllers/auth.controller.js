@@ -9,7 +9,6 @@ export const RegisterController = async (req, res) => {
 
     const { fullName, email, password } = req.body;
 
-    // Check if user already exists
     const existUser = await UserModel.findOne({ email });
     if (existUser) {
       return res.status(400).json({
@@ -20,12 +19,11 @@ export const RegisterController = async (req, res) => {
 
     let profilePicture = null;
 
-    // Check if a file was uploaded
     if (req.files && req.files.profilePicture) {
       console.log("Uploading to Cloudinary...");
 
       const result = await cloudinary.uploader.upload(
-        req.files.profilePicture.tempFilePath, // Path to uploaded temp file
+        req.files.profilePicture.tempFilePath,
         {
           folder: "profile_pictures",
           allowed_formats: ["jpg", "jpeg", "png"],
@@ -38,7 +36,6 @@ export const RegisterController = async (req, res) => {
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    // Save user
     const newUser = new UserModel({
       fullName,
       email,
@@ -66,7 +63,6 @@ export const LoginController = async (req, res) => {
   try {
     const { email, password } = req.body;
 
-    // Check if user exists
     if (!email || !password) {
       return res.status(400).json({
         error: true,
@@ -82,7 +78,6 @@ export const LoginController = async (req, res) => {
       });
     }
 
-    // Check if password is correct
     const validPassword = await bcrypt.compare(password, findUser.password);
     if (!validPassword) {
       return res.status(400).json({
@@ -100,7 +95,7 @@ export const LoginController = async (req, res) => {
     res.cookie("token", token, {
       httpOnly: true,
       secure: false,
-      maxAge: 24 * 60 * 60 * 1000, // 1 day
+      maxAge: 24 * 60 * 60 * 1000,
     });
 
     return res.status(200).json({
